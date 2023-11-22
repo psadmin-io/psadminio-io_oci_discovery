@@ -1,0 +1,4 @@
+---
+namespace:    'peoplesoft'
+grouping:     'failovergroup'
+environment:  'tier'
