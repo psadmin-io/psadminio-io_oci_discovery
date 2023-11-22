@@ -63,14 +63,14 @@ Cloning the repository:
 
 ```bash
 $ cd <DPK_LOCATION>
-$ git clone https://github.com/psadmin-io/psadminio-io_oci_facts.git modules/io_oci_facts
+$ git clone https://github.com/psadmin-io/psadminio-io_oci_discovery.git modules/io_oci_discovery
 ```
 
 As a Git Submodule:
 
 ```bash
 $ cd <DPK_LOCATION>
-$ git submodule add https://github.com/psadmin-io/psadminio-io_oci_facts.git modules/io_oci_facts
+$ git submodule add https://github.com/psadmin-io/psadminio-io_oci_discovery.git modules/io_oci_discovery
 ```
 
 ### OCI Requirements
