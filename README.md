@@ -28,7 +28,7 @@ Creating 'peoplesoft' Tag Namespace
 Creating 'peoplesoft.failovergroup' Tag
 Creating 'peoplesoft.tier' Tag
 
-Tag Namespace and Tags are ready for io_oci_facts DPK Module.
+Tag Namespace and Tags are ready for io_oci_discovery DPK Module.
  - Modify the 'tier' tag values as needed.
 ```
 
@@ -91,3 +91,11 @@ The dynamic group should include all instances where you are running the DPK (th
 
 * Looks in current compartment only (where DPK is executed) when discovering other instances with the same tags for the failover groups.
 * Default tags and namespace are: `peoplesoft.failovergroup` and `peoplesoft.tier`
+
+## Using Failover Strings
+
+To use the PIA failover string value ([following the dumb vs. smart load balancing setup](https://psadmin.io/2015/12/01/smart-v-dumb-load-balancing/)):
+
+```yaml
+pia_psserver_list:        "%{::fqdn}:%{hiera('jolt_port')}{%{::pia_failover_group}}"
+```

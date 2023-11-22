@@ -54,5 +54,5 @@ oci iam tag create \
     --validator file://tiervalues.json
 
 echo ""
-echo "Tag Namespace and Tags are ready for io_oci_facts DPK Module."
+echo "Tag Namespace and Tags are ready for io_oci_discovery DPK Module."
 echo " - Modify the 'tier' tag values as needed."
