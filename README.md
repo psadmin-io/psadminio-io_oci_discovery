@@ -34,7 +34,7 @@ Tag Namespace and Tags are ready for io_oci_discovery DPK Module.
 
 ### Custom Tag Setup
 
-Create the file `$DPK_HOME/modules/io_oci_facts/lib/facter/tags.yaml` with this structure to use non-default tag values:
+Create the file `$DPK_HOME/modules/io_oci_discovery/lib/facter/tags.yaml` with this structure to use non-default tag values:
 
 ```yaml
 namespace:    'psadminio'
