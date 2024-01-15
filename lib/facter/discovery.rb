@@ -67,7 +67,7 @@ compute_client.list_instances(compartmentid).data.each { |inst|
 
 Facter.add(:pia_failover_group) do
   setcode do
-    pia_failover_group.join(', ')
+    pia_failover_group.join(',')
   end
 end
 
