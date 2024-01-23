@@ -97,5 +97,5 @@ The dynamic group should include all instances where you are running the DPK (th
 To use the PIA failover string value ([following the dumb vs. smart load balancing setup](https://psadmin.io/2015/12/01/smart-v-dumb-load-balancing/)):
 
 ```yaml
-pia_psserver_list:        "%{::fqdn}:%{hiera('jolt_port')}{%{::pia_failover_group}}"
+pia_psserver_list:        "%{::fqdn}:%{hiera('jolt_port')}%{::pia_failover_group}"
 ```
