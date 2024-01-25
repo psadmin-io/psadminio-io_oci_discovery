@@ -68,9 +68,9 @@ compute_client.list_instances(compartmentid).data.each { |inst|
 Facter.add(:pia_failover_group) do
   setcode do
     if pia_failover_group.to_s.strip.empty?
-      puts '{'+ pia_failover_group.join(',') + '}'
-    else
       puts ''
+    else
+      puts '{'+ pia_failover_group.join(',') + '}'
     end
   end
 end
@@ -93,9 +93,9 @@ compute_client.list_instances(compartmentid).data.each { |inst|
 Facter.add(:ib_failover_group) do
   setcode do
     if ib_failover_group.to_s.strip.empty?
-      puts '{'+ ib_failover_group.join(',') + '}'
-    else
       puts ''
+    else
+      puts '{'+ ib_failover_group.join(',') + '}'
     end
   end
 end
