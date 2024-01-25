@@ -51,51 +51,53 @@ rescue
 end
 
 # PIA Failover Groups
-pia_failover_group = []
-compute_client.list_instances(compartmentid).data.each { |inst|
-  if inst.defined_tags[tags['namespace']][tags['grouping']] == 'pia' then
-    if inst.defined_tags[tags['namespace']][tags['environment']] == current_environment then
-      compute_client.list_vnic_attachments(compartmentid, instance_id: inst.id).each { |vnic_attachments|
-        vnic_attachments.data.each { |attachment|
-          vnic = vcn_client.get_vnic(attachment.vnic_id).data
-          pia_failover_group.push(vnic.private_ip + ":%{hiera('jolt_port')}")
-        }
-      }
-    end
-  end
-}
-
 Facter.add(:pia_failover_group) do
-  setcode do
-    if pia_failover_group.to_s.strip.empty?
-      puts ''
-    else
-      puts '{'+ pia_failover_group.join(',') + '}'
+  pia_failover_group = []
+  compute_client.list_instances(compartmentid).data.each { |inst|
+    if inst.defined_tags[tags['namespace']][tags['grouping']] == 'pia' then
+      if inst.defined_tags[tags['namespace']][tags['environment']] == current_environment then
+        compute_client.list_vnic_attachments(compartmentid, instance_id: inst.id).each { |vnic_attachments|
+          vnic_attachments.data.each { |attachment|
+            vnic = vcn_client.get_vnic(attachment.vnic_id).data
+            pia_failover_group.push(vnic.private_ip + ":%{hiera('jolt_port')}")
+          }
+        }
+      end
     end
+  }
+
+  setcode do
+    if pia_failover_group.empty?
+      pia_group = ''
+    else
+      pia_group = '{'+ pia_failover_group.join(',') + '}'
+    end
+    pia_group
   end
 end
 
 # IB Gateway Failover Groups
-ib_failover_group = []
-compute_client.list_instances(compartmentid).data.each { |inst|
-  if inst.defined_tags[tags['namespace']][tags['grouping']] == 'ib' then
-    if inst.defined_tags[tags['namespace']][tags['environment']] == current_environment then
-      compute_client.list_vnic_attachments(compartmentid, instance_id: inst.id).each { |vnic_attachments|
-        vnic_attachments.data.each { |attachment|
-          vnic = vcn_client.get_vnic(attachment.vnic_id).data
-          pia_failover_group.push(vnic.private_ip + ":%{hiera('jolt_port')}")
-        }
-      }
-    end
-  end
-}
-
 Facter.add(:ib_failover_group) do
-  setcode do
-    if ib_failover_group.to_s.strip.empty?
-      puts ''
-    else
-      puts '{'+ ib_failover_group.join(',') + '}'
+  ib_failover_group = []
+  compute_client.list_instances(compartmentid).data.each { |inst|
+    if inst.defined_tags[tags['namespace']][tags['grouping']] == 'ib' then
+      if inst.defined_tags[tags['namespace']][tags['environment']] == current_environment then
+        compute_client.list_vnic_attachments(compartmentid, instance_id: inst.id).each { |vnic_attachments|
+          vnic_attachments.data.each { |attachment|
+            vnic = vcn_client.get_vnic(attachment.vnic_id).data
+            pia_failover_group.push(vnic.private_ip + ":%{hiera('jolt_port')}")
+          }
+        }
+      end
     end
+  }
+
+  setcode do
+    if ib_failover_group.empty?
+      ib_group = ''
+    else
+      ib_group = '{'+ ib_failover_group.join(',') + '}'
+    end
+    ib_group
   end
 end
